@@ -11,6 +11,29 @@ Detect human faces in the image and for the sake of privacy, anonymize the image
 
 # Usage
 
+```bash
+docker run --rm -ti \
+--volume "$PWD":/app \
+--env DISPLAY=$DISPLAY \
+--volume=$HOME/.Xauthority:/root/.Xauthority \
+--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+--device /dev/video0 \
+mmphego/intel-openvino \
+bash -c "\
+    source /opt/intel/openvino/bin/setupvars.sh && \
+    python main.py -i blm.jpg
+    "
+```
+
+## Example
+
+Input image:
+![](./blm.jpg)
+
+Output image:
+![](./Blurred_Faces.jpg)
+
+
 # Feedback
 
 Feel free to fork it or send me PR to improve it.
