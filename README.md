@@ -2,8 +2,6 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![GitHub](https://img.shields.io/github/license/mmphego/privacy_protection.svg)](LICENSE)
-[![Build Status](https://img.shields.io/travis/mmphego/privacy_protection.svg)](https://travis-ci.com/mmphego/privacy_protection)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/43713e0b78f547e8912ff05c9350cffb)](https://app.codacy.com/app/mmphego/privacy_protection?utm_source=github.com&utm_medium=referral&utm_content=mmphego/privacy_protection&utm_campaign=Badge_Grade_Dashboard)
 [![Python](https://img.shields.io/badge/Python-3.6%2B-red.svg)](https://www.python.org/downloads/)
 [![Donate](https://img.shields.io/badge/Donate-%24-green.svg)](https://paypal.me/mmphego)
 
@@ -28,11 +26,15 @@ bash -c "\
 ## Example
 
 Input image:
+
 ![](./blm.jpg)
 
+---
 Output image:
+
 ![](./Blurred_Faces.jpg)
 
+**Note:** False detections are inevitable using `cascade classifiers` and if you want to have a really precise detector, you will have to train it yourself using [OpenCV train cascade utility](https://docs.opencv.org/2.4.13.7/doc/user_guide/ug_traincascade.html).
 
 # Feedback
 
