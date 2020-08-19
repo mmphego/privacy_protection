@@ -1,3 +1,5 @@
+import argparse
+
 import cv2
 
 from matplotlib import pyplot as plt
@@ -75,7 +77,9 @@ def show_detected_face_obtain_faces(result, detected, title="Face image"):
     return rostros
 
 
-def face_detections(image):
+def face_detections(
+    image, scale_factor=1.1, step_ratio=1.3, min_size=(10, 10), max_size=(400, 400)
+):
     # Load the trained file from data
     trained_file = data.lbp_frontal_face_cascade_filename()
 
@@ -85,10 +89,10 @@ def face_detections(image):
     # Detect faces with min and max size of searching window
     detected_faces = detector.detect_multi_scale(
         img=image,
-        scale_factor=1.1,
-        step_ratio=1.3,
-        min_size=(10, 10),
-        max_size=(400, 400),
+        scale_factor=scale_factor,
+        step_ratio=step_ratio,
+        min_size=min_size,
+        max_size=max_size,
     )
     return detected_faces
 
@@ -113,8 +117,23 @@ def blur_faces(image, detected_faces):
     return resulting_image
 
 
+def arg_parser():
+    """Parse command line arguments.
+
+    :return: command line arguments
+    """
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-i", "--input", required=True, type=str, help="Path to an image.",
+    )
+    # TODO: Add Cascade.detect_multi_scale params
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    image = imread("blm.jpg")
+    args = arg_parser()
+    image = imread(args.input)
     detected_faces = face_detections(image)
     resulting_image = blur_faces(image, detected_faces)
     imsave("Blurred_Faces.jpg", resulting_image)
